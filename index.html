@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BackendBench Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-microchip"></i> BackendBench</h1>
+                    <span class="subtitle">Kernel Performance Leaderboard</span>
+                </div>
+                <nav class="nav">
+                    <a href="#leaderboard" class="nav-link active">Leaderboard</a>
+                    <a href="#submit" class="nav-link">Submit</a>
+                    <a href="#docs" class="nav-link">Documentation</a>
+                    <a href="#about" class="nav-link">About</a>
+                </nav>
+                <button class="submit-btn">
+                    <i class="fas fa-plus"></i> Submit Kernel
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Benchmark Your GPU Kernels</h2>
+                <p>Compare performance across different implementations, DSLs, and devices. Built for researchers
+                    training NanoGPT and beyond.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">127</span>
+                        <span class="stat-label">Total Submissions</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">43</span>
+                        <span class="stat-label">Contributors</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Operators</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operators Grid -->
+    <section class="operators" id="operators">
+        <div class="container">
+            <div class="operators-header">
+                <h3>Select an Operator to View Rankings</h3>
+                <p>Click on any operator below to see the performance leaderboard for that specific kernel type</p>
+            </div>
+
+            <div class="operators-grid">
+                <div class="operator-card" data-operator="matmul" onclick="viewOperatorLeaderboard('matmul')">
+                    <div class="operator-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Matrix Multiplication</h4>
+                        <p>High-performance GEMM implementations</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>15 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2847.3 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="attention" onclick="viewOperatorLeaderboard('attention')">
+                    <div class="operator-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Attention</h4>
+                        <p>Self-attention and multi-head attention kernels</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>12 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2743.8 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="layernorm" onclick="viewOperatorLeaderboard('layernorm')">
+                    <div class="operator-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Layer Normalization</h4>
+                        <p>Fused layer normalization implementations</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>9 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2689.4 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="conv2d" onclick="viewOperatorLeaderboard('conv2d')">
+                    <div class="operator-icon">
+                        <i class="fas fa-grip"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>2D Convolution</h4>
+                        <p>Optimized convolution operations</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>8 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2621.7 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="gelu" onclick="viewOperatorLeaderboard('gelu')">
+                    <div class="operator-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>GELU Activation</h4>
+                        <p>Gaussian Error Linear Unit implementations</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>6 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2534.2 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="softmax" onclick="viewOperatorLeaderboard('softmax')">
+                    <div class="operator-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Softmax</h4>
+                        <p>Numerically stable softmax kernels</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>7 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2445.6 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="linear" onclick="viewOperatorLeaderboard('linear')">
+                    <div class="operator-icon">
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Linear Layer</h4>
+                        <p>Fully connected layer implementations</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>10 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2387.9 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="operator-card" data-operator="embedding" onclick="viewOperatorLeaderboard('embedding')">
+                    <div class="operator-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <div class="operator-info">
+                        <h4>Embedding</h4>
+                        <p>Token and positional embedding lookups</p>
+                        <div class="operator-stats">
+                            <span class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>5 submissions</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span>2298.3 TFLOPS</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="operator-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual Operator Leaderboard (Hidden by default) -->
+    <section class="leaderboard hidden" id="leaderboard">
+        <div class="container">
+            <div class="leaderboard-nav">
+                <button class="back-btn" onclick="backToOperators()">
+                    <i class="fas fa-arrow-left"></i> Back to Operators
+                </button>
+                <div class="current-operator">
+                    <h3 id="current-operator-title">Matrix Multiplication Leaderboard</h3>
+                    <p id="current-operator-description">Performance rankings for matrix multiplication kernels</p>
+                </div>
+            </div>
+
+            <div class="leaderboard-controls">
+                <div class="filters-mini">
+                    <div class="filter-group">
+                        <label>DSL</label>
+                        <select id="dsl-filter">
+                            <option value="">All DSLs</option>
+                            <option value="triton">Triton</option>
+                            <option value="cuda">CUDA</option>
+                            <option value="cutlass">CUTLASS</option>
+                            <option value="pytorch">PyTorch</option>
+                            <option value="jax">JAX</option>
+                            <option value="tvm">TVM</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Device</label>
+                        <select id="device-filter">
+                            <option value="">All Devices</option>
+                            <option value="h100">H100</option>
+                            <option value="a100">A100</option>
+                            <option value="v100">V100</option>
+                            <option value="rtx4090">RTX 4090</option>
+                            <option value="rtx3080">RTX 3080</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By</label>
+                        <select id="sort-filter">
+                            <option value="performance">Performance (TFLOPS)</option>
+                            <option value="date">Submission Date</option>
+                            <option value="correctness">Correctness Score</option>
+                            <option value="author">Author</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="table">
+                        <i class="fas fa-table"></i> Table View
+                    </button>
+                    <button class="view-btn" data-view="cards">
+                        <i class="fas fa-th-large"></i> Card View
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table View -->
+            <div class="table-container" id="table-view">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Submission</th>
+                            <th>DSL</th>
+                            <th>Device</th>
+                            <th>Performance</th>
+                            <th>Correctness</th>
+                            <th>Author</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic content will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Card View (Hidden by default) -->
+            <div class="cards-container" id="cards-view" style="display: none;">
+                <!-- Dynamic content will be populated here -->
+            </div>
+
+            <div class="pagination">
+                <button class="pagination-btn" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <div class="pagination-numbers">
+                    <button class="pagination-number active">1</button>
+                    <button class="pagination-number">2</button>
+                    <button class="pagination-number">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-number">12</button>
+                </div>
+                <button class="pagination-btn">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission Detail Modal (Hidden by default) -->
+    <div class="modal" id="submission-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>OptimizedMatMul_v3</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="submission-details">
+                    <div class="detail-section">
+                        <h4>Performance Metrics</h4>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="metric-label">TFLOPS</span>
+                                <span class="metric-value">2847.3</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Latency</span>
+                                <span class="metric-value">0.032ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Memory BW</span>
+                                <span class="metric-value">1.2TB/s</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Efficiency</span>
+                                <span class="metric-value">94.7%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Configuration</h4>
+                        <div class="config-table">
+                            <div class="config-row">
+                                <span class="config-key">Operator</span>
+                                <span class="config-value">Matrix Multiplication</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-key">DSL</span>
+                                <span class="config-value">Triton</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-key">Device</span>
+                                <span class="config-value">NVIDIA H100</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-key">Precision</span>
+                                <span class="config-value">FP16</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-key">Batch Size</span>
+                                <span class="config-value">1024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Submission Info</h4>
+                        <div class="submission-meta-full">
+                            <div class="meta-item">
+                                <span class="meta-label">Author</span>
+                                <span class="meta-value">@researcher_ai</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Submitted</span>
+                                <span class="meta-value">March 15, 2024</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Submission ID</span>
+                                <span class="meta-value">#1247</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary">View Code</button>
+                <button class="btn-primary">Download Kernel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>BackendBench</h4>
+                    <p>Open source GPU kernel benchmarking platform for researchers and developers.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#api">API Reference</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#github">GitHub</a></li>
+                        <li><a href="#discord">Discord</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#issues">Report Issues</a></li>
+                        <li><a href="#feedback">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BackendBench. Open source project under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
