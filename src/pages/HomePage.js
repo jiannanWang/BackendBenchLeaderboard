@@ -36,8 +36,6 @@ const HomePage = () => {
             <section className="operators" id="operators">
                 <div className="container">
                     <div className="operators-header">
-                        <h3>Select an Operator to View Rankings</h3>
-                        <p>Click on any operator below to see the performance leaderboard for that specific kernel type</p>
                     </div>
 
                     <div className="operators-grid">

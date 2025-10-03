@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import LeaderboardTable from '../components/LeaderboardTable';
 import { mockSubmissionsByOperator, operatorInfo } from '../data/mockData';
 
 const OperatorPage = () => {
     const { operatorKey } = useParams();
+    const navigate = useNavigate();
     const [submissions, setSubmissions] = useState([]);
     const [filteredSubmissions, setFilteredSubmissions] = useState([]);
     const [currentView, setCurrentView] = useState('table');
@@ -214,10 +215,16 @@ const OperatorPage = () => {
                                             </div>
                                         </div>
                                         <div className="card-actions">
-                                            <button className="action-btn view-btn">
+                                            <button 
+                                                className="action-btn view-btn"
+                                                onClick={() => navigate(`/operator/${operatorKey}/submission/${submission.id}`)}
+                                            >
                                                 <i className="fas fa-eye"></i> View Details
                                             </button>
-                                            <button className="action-btn download-btn">
+                                            <button 
+                                                className="action-btn download-btn"
+                                                onClick={() => alert(`Downloading ${submission.name} kernel implementation...`)}
+                                            >
                                                 <i className="fas fa-download"></i> Download
                                             </button>
                                         </div>

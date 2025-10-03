@@ -22,6 +22,12 @@ const Header = () => {
                             Leaderboard
                         </Link>
                         <Link 
+                            to="/model-evaluation" 
+                            className={`nav-link ${location.pathname.startsWith('/model-evaluation') ? 'active' : ''}`}
+                        >
+                            Model Evaluation
+                        </Link>
+                        <Link 
                             to="/submit" 
                             className={`nav-link ${location.pathname === '/submit' ? 'active' : ''}`}
                         >

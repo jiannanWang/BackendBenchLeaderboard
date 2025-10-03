@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import SubmissionModal from './SubmissionModal';
 
 const LeaderboardTable = ({ submissions }) => {
     const [selectedSubmission, setSelectedSubmission] = useState(null);
+    const navigate = useNavigate();
+    const { operatorKey } = useParams();
 
     const handleViewDetails = (submission) => {
+        navigate(`/operator/${operatorKey}/submission/${submission.id}`);
+    };
+
+    const handleModalView = (submission) => {
         setSelectedSubmission(submission);
     };
 
@@ -37,7 +44,12 @@ const LeaderboardTable = ({ submissions }) => {
                         {submissions.map((submission, index) => {
                             const rank = index + 1;
                             return (
-                                <tr key={submission.id} className={rank <= 3 ? `rank-${rank}` : ''}>
+                                <tr 
+                                    key={submission.id} 
+                                    className={`${rank <= 3 ? `rank-${rank}` : ''} clickable-row`}
+                                    onClick={() => handleViewDetails(submission)}
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     <td>
                                         <div className="rank">
                                             {rank <= 3 && <i className="fas fa-crown"></i>}
@@ -90,14 +102,20 @@ const LeaderboardTable = ({ submissions }) => {
                                             <button 
                                                 className="action-btn view-btn" 
                                                 title="View Details"
-                                                onClick={() => handleViewDetails(submission)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleViewDetails(submission);
+                                                }}
                                             >
                                                 <i className="fas fa-eye"></i>
                                             </button>
                                             <button 
                                                 className="action-btn download-btn" 
                                                 title="Download"
-                                                onClick={() => handleDownload(submission)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleDownload(submission);
+                                                }}
                                             >
                                                 <i className="fas fa-download"></i>
                                             </button>
