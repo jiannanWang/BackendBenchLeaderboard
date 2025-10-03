@@ -49,9 +49,18 @@ body {
     font-weight: 400;
 }
 
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: 2rem;
+    gap: 2rem;
+}
+
 .nav {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
 }
 
@@ -82,7 +91,7 @@ body {
     border-radius: 1px;
 }
 
-.submit-btn {
+.submit-btn-header {
     background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
     color: white;
     border: none;
@@ -91,11 +100,42 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.submit-btn-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #00d9ff, #0099cc);
+    color: #000;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    width: auto;
+    justify-content: center;
+    max-width: 180px;
+    margin: 0 auto;
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
 }
 
 /* Hero Section */
@@ -2340,12 +2380,33 @@ body {
     font-weight: 600;
 }
 
-.submissions-list {
+.submissions-grid {
     padding: 1rem;
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
 }
 
+.submission-card-square {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.2s ease;
+    aspect-ratio: 1;
+    justify-content: space-between;
+}
+
+.submission-card-square:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 217, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Legacy submission card styles for other pages */
 .submission-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2363,6 +2424,100 @@ body {
     border-color: rgba(0, 217, 255, 0.3);
 }
 
+.submission-card-square .submission-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.submission-card-square .submission-header h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.submission-card-square .author {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.key-metrics {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.metric-row .metric {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    flex: 1;
+    max-width: 120px;
+}
+
+.metric-row .metric .metric-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.metric-row .metric .metric-label {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.operators-compact {
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(0, 217, 255, 0.1);
+    border-radius: 6px;
+}
+
+.operators-count {
+    font-size: 0.8rem;
+    color: #00d9ff;
+    font-weight: 500;
+}
+
+.submission-actions-compact {
+    margin-top: auto;
+}
+
+.action-btn.primary-compact {
+    background: #00d9ff;
+    color: #000;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.action-btn.primary-compact:hover {
+    background: #00b8e6;
+    transform: translateY(-1px);
+}
+
+/* Legacy styles for other pages */
 .submission-header {
     display: flex;
     justify-content: space-between;

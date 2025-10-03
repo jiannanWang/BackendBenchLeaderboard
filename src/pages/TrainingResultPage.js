@@ -260,9 +260,6 @@ const TrainingResultPage = () => {
                             <div className="training-badges">
                                 <span className="model-badge">{submission.model}</span>
                                 <span className="author-badge">@{submission.author}</span>
-                                <span className={`convergence-badge ${submission.convergence.toLowerCase().replace(' ', '-')}`}>
-                                    {submission.convergence} Convergence
-                                </span>
                             </div>
                         </div>
 
@@ -297,13 +294,6 @@ const TrainingResultPage = () => {
                                     <span className="stat-label">Total Epochs</span>
                                 </div>
                             </div>
-                            <div className="summary-stat">
-                                <div className="stat-icon"><i className="fas fa-tachometer-alt"></i></div>
-                                <div className="stat-content">
-                                    <span className="stat-value">{submission.efficiency}%</span>
-                                    <span className="stat-label">Efficiency</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -330,12 +320,6 @@ const TrainingResultPage = () => {
                             onClick={() => setActiveChart('memory')}
                         >
                             <i className="fas fa-memory"></i> Memory Usage
-                        </button>
-                        <button 
-                            className={`chart-tab ${activeChart === 'lr' ? 'active' : ''}`}
-                            onClick={() => setActiveChart('lr')}
-                        >
-                            <i className="fas fa-cogs"></i> Learning Rate
                         </button>
                     </div>
                 </div>

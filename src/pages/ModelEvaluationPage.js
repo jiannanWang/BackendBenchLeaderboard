@@ -245,61 +245,37 @@ const ModelEvaluationPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="submissions-list">
+                                <div className="submissions-grid">
                                     {model.submissions.map((submission) => (
-                                        <div key={submission.id} className="submission-card">
-                                            <div className="submission-info">
-                                                <div className="submission-header">
-                                                    <h4>{submission.name}</h4>
-                                                    <span className="author">by @{submission.author}</span>
-                                                </div>
-                                                
-                                                <div className="operators-used">
-                                                    <span className="operators-label">Operators:</span>
-                                                    <div className="operators-tags">
-                                                        {submission.operators.map((op, idx) => (
-                                                            <span key={idx} className="operator-tag">{op}</span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-
-                                                <div className="training-metrics">
+                                        <div key={submission.id} className="submission-card-square">
+                                            <div className="submission-header">
+                                                <h4>{submission.name}</h4>
+                                                <span className="author">@{submission.author}</span>
+                                            </div>
+                                              
+                                            <div className="key-metrics">
+                                                <div className="metric-row">
                                                     <div className="metric">
-                                                        <span className="metric-label">Final Loss</span>
                                                         <span className="metric-value loss">{submission.finalLoss}</span>
+                                                        <span className="metric-label">Loss</span>
                                                     </div>
                                                     <div className="metric">
-                                                        <span className="metric-label">Avg Time/Epoch</span>
                                                         <span className="metric-value time">{submission.avgTimePerEpoch}s</span>
-                                                    </div>
-                                                    <div className="metric">
-                                                        <span className="metric-label">Convergence</span>
-                                                        <span 
-                                                            className="metric-value convergence"
-                                                            style={{ color: getConvergenceColor(submission.convergence) }}
-                                                        >
-                                                            {submission.convergence}
-                                                        </span>
-                                                    </div>
-                                                    <div className="metric">
-                                                        <span className="metric-label">Efficiency</span>
-                                                        <span className="metric-value efficiency">{submission.efficiency}%</span>
+                                                        <span className="metric-label">Time/Epoch</span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="submission-actions">
+                                            <div className="operators-compact">
+                                                <span className="operators-count">{submission.operators.length} operators</span>
+                                            </div>
+
+                                            <div className="submission-actions-compact">
                                                 <button 
-                                                    className="action-btn primary"
+                                                    className="action-btn primary-compact"
                                                     onClick={() => handleViewTrainingCurve(modelKey, submission)}
                                                 >
-                                                    <i className="fas fa-chart-line"></i> View Training Curve
-                                                </button>
-                                                <button className="action-btn secondary">
-                                                    <i className="fas fa-download"></i>
-                                                </button>
-                                                <button className="action-btn secondary">
-                                                    <i className="fas fa-code"></i>
+                                                    <i className="fas fa-chart-line"></i> View Details
                                                 </button>
                                             </div>
                                         </div>

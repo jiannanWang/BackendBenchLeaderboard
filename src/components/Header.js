@@ -14,31 +14,27 @@ const Header = () => {
                             <span className="subtitle">Kernel Performance Leaderboard</span>
                         </Link>
                     </div>
-                    <nav className="nav">
-                        <Link 
-                            to="/" 
-                            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-                        >
-                            Leaderboard
+                    <div className="nav-wrapper">
+                        <nav className="nav">
+                            <Link 
+                                to="/" 
+                                className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                            >
+                                Leaderboard
+                            </Link>
+                            <Link 
+                                to="/model-evaluation" 
+                                className={`nav-link ${location.pathname.startsWith('/model-evaluation') ? 'active' : ''}`}
+                            >
+                                Model Evaluation
+                            </Link>
+                            <a href="#docs" className="nav-link">Documentation</a>
+                            <a href="#about" className="nav-link">About</a>
+                        </nav>
+                        <Link to="/submit" className="submit-btn-header">
+                            <i className="fas fa-plus"></i> Submit Kernel
                         </Link>
-                        <Link 
-                            to="/model-evaluation" 
-                            className={`nav-link ${location.pathname.startsWith('/model-evaluation') ? 'active' : ''}`}
-                        >
-                            Model Evaluation
-                        </Link>
-                        <Link 
-                            to="/submit" 
-                            className={`nav-link ${location.pathname === '/submit' ? 'active' : ''}`}
-                        >
-                            Submit
-                        </Link>
-                        <a href="#docs" className="nav-link">Documentation</a>
-                        <a href="#about" className="nav-link">About</a>
-                    </nav>
-                    <Link to="/submit" className="submit-btn">
-                        <i className="fas fa-plus"></i> Submit Kernel
-                    </Link>
+                    </div>
                 </div>
             </div>
         </header>
