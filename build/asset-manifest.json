@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0285a5a.css",
-    "main.js": "/static/js/main.109c2e7c.js",
-    "index.html": "/index.html"
+    "main.css": "/BackendBenchLeaderboard/static/css/main.a0285a5a.css",
+    "main.js": "/BackendBenchLeaderboard/static/js/main.109c2e7c.js",
+    "index.html": "/BackendBenchLeaderboard/index.html"
   },
   "entrypoints": [
     "static/css/main.a0285a5a.css",
